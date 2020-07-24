@@ -2,4 +2,4 @@
 
 Python packages required:
 - `geopandas`
-- `scipy`
+- `scipy.states`
