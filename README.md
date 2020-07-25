@@ -20,5 +20,7 @@ Python packages required:
 - `scipy`
 - `statsmodels`
 - `scikit-learn`
-- `jupyterlab`
-For the conda environment used throughout the analysis, see `environment.yml`.
+- `jupyterlab`<br />
+For the conda environment used throughout the analysis, see `environment.yml`.<br />
+---
+Copyright (C) 2020 David Lafferty
