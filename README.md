@@ -1,6 +1,6 @@
 # Assessing the suitability of downscaled and bias-corrected climate information for use in agricultural modeling
 
-This respository contains all data and code required to reproduce the analysis in:
+This respository contains all data and code required to reproduce the analysis in:<br />
 *Lafferty et. al., Assessing the suitability of downscaled and bias-corrected climate information for use in agricultural modeling (2020)*.
 
 To run the analysis start to finish, run all cells in each notebook in the following order:
