@@ -12,7 +12,7 @@ To run the analysis start to finish, run all cells in each notebook in the follo
 
 ***Note:*** The `agvars` and `plotting_tools` directories were stored with [Git LFS](https://git-lfs.github.com). If you don't want to install Git LFS, you can access their contents [here](https://uillinoisedu-my.sharepoint.com/:f:/g/personal/davidcl2_illinois_edu/EgrWzY0BfhpFrUhqRmLFUXEBwHk84o_eWusCtMqyfsGJww?e=G9ofNy).
 
-Python packages required:
+For the conda environment used throughout the analysis, see `environment.yml`. Python packages required:
 - `numpy`
 - `matplotlib`
 - `pandas`
@@ -21,6 +21,5 @@ Python packages required:
 - `statsmodels`
 - `scikit-learn`
 - `jupyterlab`<br />
-For the conda environment used throughout the analysis, see `environment.yml`.<br />
 ---
 Copyright (C) 2020 David Lafferty
