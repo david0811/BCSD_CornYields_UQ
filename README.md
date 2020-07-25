@@ -21,5 +21,3 @@ For the conda environment used throughout the analysis, see `environment.yml`. P
 - `statsmodels`
 - `scikit-learn`
 - `jupyterlab`<br />
----
-Copyright (C) 2020 David Lafferty
