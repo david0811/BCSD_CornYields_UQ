@@ -26,6 +26,7 @@ dependencies:
   - cycler=0.10.0=py_2
   - decorator=4.4.2=py_0
   - defusedxml=0.6.0=py_0
+  - descartes=1.1.0=py_4
   - entrypoints=0.3=py37hc8dfbb8_1001
   - expat=2.2.9=h4a8c4bd_2
   - fiona=1.8.13=py37h9c7205d_1
@@ -103,7 +104,7 @@ dependencies:
   - numpy-base=1.18.5=py37h3304bdc_0
   - olefile=0.46=py_0
   - openjpeg=2.3.1=h254dc36_3
-  - openssl=1.1.1g=h0b31af3_0
+  - openssl=1.1.1g=h0b31af3_1
   - packaging=20.4=pyh9f0ad1d_0
   - pandas=1.0.5=py37h94625e5_0
   - pandoc=2.10.1=haf1e3a3_0

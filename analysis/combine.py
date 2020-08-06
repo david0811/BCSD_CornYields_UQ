@@ -67,7 +67,7 @@ def combine_nex_yield():
     # Merge CMIP with GMFD
     gmfd = get_gmfd_yield()
     nex_all = pd.merge(nex, gmfd.reset_index(), on = ["GEOID", "Year"], how = 'inner')
-    return nex_all.set_index(['GEOID','Year'], inplace=True)
+    return nex_all.set_index(['GEOID','Year'])
 
 ########## CMIP
 def combine_cmip_yield():
@@ -119,7 +119,7 @@ def combine_cmip_yield():
     # Merge CMIP with GMFD
     gmfd = get_gmfd_yield()
     cmip_all = pd.merge(cmip, gmfd.reset_index(), on = ["GEOID", "Year"], how = 'inner')
-    return cmip_all.set_index(['GEOID','Year'], inplace=True)
+    return cmip_all.set_index(['GEOID','Year'])
 
 ###############
 ### Ag-vars
