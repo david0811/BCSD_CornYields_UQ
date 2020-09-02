@@ -19,7 +19,7 @@ def get_gmfd_yield():
     return gmfd
 
 ######### NEX-GDDP
-def combine_nex_yield():
+def combine_nex_yield(hist=True, mid=False, end=False):
     nex_hist = ["yield_historical_r1i1p1_ACCESS1-0.csv",
                 "yield_historical_r1i1p1_BNU-ESM.csv",
                 "yield_historical_r1i1p1_CCSM4.csv",
@@ -41,19 +41,48 @@ def combine_nex_yield():
                 "yield_historical_r1i1p1_NorESM1-M.csv",
                 "yield_historical_r1i1p1_bcc-csm1-1.csv",
                 "yield_historical_r1i1p1_inmcm4.csv"]
+    nex_proj = ["yield_rcp85_r1i1p1_ACCESS1-0.csv",
+                "yield_rcp85_r1i1p1_BNU-ESM.csv",
+                "yield_rcp85_r1i1p1_CCSM4.csv",
+                "yield_rcp85_r1i1p1_CESM1-BGC.csv",
+                "yield_rcp85_r1i1p1_CNRM-CM5.csv",
+                "yield_rcp85_r1i1p1_CSIRO-Mk3-6-0.csv",
+                "yield_rcp85_r1i1p1_CanESM2.csv",
+                "yield_rcp85_r1i1p1_GFDL-CM3.csv",
+                "yield_rcp85_r1i1p1_GFDL-ESM2G.csv",
+                "yield_rcp85_r1i1p1_GFDL-ESM2M.csv",
+                "yield_rcp85_r1i1p1_IPSL-CM5A-LR.csv",
+                "yield_rcp85_r1i1p1_IPSL-CM5A-MR.csv",
+                "yield_rcp85_r1i1p1_MIROC-ESM-CHEM.csv",
+                "yield_rcp85_r1i1p1_MIROC-ESM.csv",
+                "yield_rcp85_r1i1p1_MIROC5.csv",
+                "yield_rcp85_r1i1p1_MPI-ESM-LR.csv",
+                "yield_rcp85_r1i1p1_MPI-ESM-MR.csv",
+                "yield_rcp85_r1i1p1_MRI-CGCM3.csv",
+                "yield_rcp85_r1i1p1_NorESM1-M.csv",
+                "yield_rcp85_r1i1p1_bcc-csm1-1.csv",
+                "yield_rcp85_r1i1p1_inmcm4.csv"]
     # Get nex models
-    nex  = pd.read_csv("../ag_model/run_model/output/NEX-GDDP/res_60-05_" + nex_hist[0])
+    timeID = hist*'60-05_' + mid*'40-59_' + end*'80-99_'
+    if hist:
+        nex  = pd.read_csv("../ag_model/run_model/output/NEX-GDDP/res_" + timeID + nex_hist[0])
+        nex.rename(columns = {"yield" : nex_hist[0].replace("historical_r1i1p1_","").replace(".csv","").replace("yield_","")}, inplace = True)
+    else:
+        nex  = pd.read_csv("../ag_model/run_model/output/NEX-GDDP/res_" + timeID + nex_proj[0])
+        nex.rename(columns = {"yield" : nex_proj[0].replace("rcp85_r1i1p1_","").replace(".csv","").replace("yield_","")}, inplace = True)
     nex["GEOID"] = nex["GEOID"].astype(str).str.zfill(5)
-    nex = nex.query('Year <= 2005')
-    nex.rename(columns = {"yield" : nex_hist[0].replace("historical_r1i1p1_","").replace(".csv","").replace("yield_","")}, inplace = True)
+    
+    if hist:
+        nex_names = nex_hist[1:]
+    else:
+        nex_names = nex_proj[1:]
 
-    for name in nex_hist[1:]:
+    for name in nex_names:
         # Read in product
-        data = pd.read_csv("../ag_model/run_model/output/NEX-GDDP/res_60-05_" + name)
-        data = data.query('Year <= 2005')
+        data = pd.read_csv("../ag_model/run_model/output/NEX-GDDP/res_" + timeID + name)
         data["GEOID"] = data["GEOID"].astype(str).str.zfill(5)
         # Model name
-        model = name.replace("historical_r1i1p1_","").replace(".csv","").replace("yield_","")
+        model = name.replace("historical_r1i1p1_","").replace("rcp85_r1i1p1_","").replace(".csv","").replace("yield_","")
         data.rename(columns = {"yield" : model}, inplace = True)
         # Do the merge
         #print("Read in: " + model + ". Shape: " + str(data.shape) + ". Merging now...")
@@ -65,12 +94,15 @@ def combine_nex_yield():
     nex = nex[nex.inmcm4 != 0]
     
     # Merge CMIP with GMFD
-    gmfd = get_gmfd_yield()
-    nex_all = pd.merge(nex, gmfd.reset_index(), on = ["GEOID", "Year"], how = 'inner')
-    return nex_all.set_index(['GEOID','Year'])
+    if hist:
+        gmfd = get_gmfd_yield()
+        nex_all = pd.merge(nex, gmfd.reset_index(), on = ["GEOID", "Year"], how = 'inner')
+        return nex_all.set_index(['GEOID','Year'])
+    else:
+        return nex.set_index(['GEOID','Year'])
 
 ########## CMIP
-def combine_cmip_yield():
+def combine_cmip_yield(hist = True, mid=False, end=False):
     cmip_names = ["yield_ACCESS1-0.historical+rcp85.csv",
                   "yield_BNU-ESM.historical+rcp85.csv",
                   "yield_CCSM4_historical+rcp85.csv",
@@ -94,16 +126,15 @@ def combine_cmip_yield():
                   "yield_inmcm4.historical+rcp85.csv"]
 
     # Get cmip models
-    cmip  = pd.read_csv("../ag_model/run_model/output/CMIP/res_60-05_" + cmip_names[0])
+    timeID = hist*'60-05_' + mid*'40-59_' + end*'80-99_'
+    cmip  = pd.read_csv("../ag_model/run_model/output/CMIP/res_" + timeID + cmip_names[0])
     cmip["GEOID"] = cmip["GEOID"].astype(str).str.zfill(5)
-    cmip = cmip.query('Year >= 1960 and Year <= 2005')
     cmip.rename(columns = {"yield" : cmip_names[0].replace(".historical+rcp85","").replace(".csv","").replace("yield_","")}, inplace = True)
 
     for name in cmip_names[1:]:
         # Read in product
-        data = pd.read_csv("../ag_model/run_model/output/CMIP/res_60-05_" + name)
+        data = pd.read_csv("../ag_model/run_model/output/CMIP/res_" + timeID + name)
         data["GEOID"] = data["GEOID"].astype(str).str.zfill(5)
-        data = data.query('Year >= 1960 and Year <= 2005')
         # Model name
         model = name.replace(".historical+rcp85","").replace("_historical+rcp85","").replace(".csv","").replace("yield_","")
         data.rename(columns = {"yield" : model}, inplace = True)
@@ -117,9 +148,12 @@ def combine_cmip_yield():
     cmip = cmip[cmip.inmcm4 != 0]
     
     # Merge CMIP with GMFD
-    gmfd = get_gmfd_yield()
-    cmip_all = pd.merge(cmip, gmfd.reset_index(), on = ["GEOID", "Year"], how = 'inner')
-    return cmip_all.set_index(['GEOID','Year'])
+    if hist:
+        gmfd = get_gmfd_yield()
+        cmip_all = pd.merge(cmip, gmfd.reset_index(), on = ["GEOID", "Year"], how = 'inner')
+        return cmip_all.set_index(['GEOID','Year'])
+    else:
+        return cmip.set_index(['GEOID','Year'])
 
 ###############
 ### Ag-vars

@@ -8,7 +8,7 @@ To run the analysis start to finish, run all cells in each notebook in the follo
 2. `ag_model/fit_model/ag_model_fit.ipynb` (this notebook produces Figure 1)
 3. `analysis/county_agvar.ipynb` (this notebook produces Figure 2)
 4. `analysis/county_yield.ipynb` (this notebook produces Figure 3)
-5. `analysis/national.ipynb` (this notebook produces Figure 4)
+5. `analysis/national.ipynb` (this notebook produces Figures 4 & 5)
 
 ***Note:*** The `agvars` and `plotting_tools` directories were stored with [Git LFS](https://git-lfs.github.com); if you don't want to install Git LFS, you can access their contents [here](https://uillinoisedu-my.sharepoint.com/:f:/g/personal/davidcl2_illinois_edu/EgrWzY0BfhpFrUhqRmLFUXEBwHk84o_eWusCtMqyfsGJww?e=G9ofNy). The calculation of county-level degree days from the native NEX-GDDP and CMIP netcdf files was done offline, but you can find scripts showing the basic structure in `other`.
 
