@@ -3,6 +3,8 @@
 This respository contains all data and code required to reproduce the analysis in:<br />
 *Lafferty et. al., Statistically bias-corrected and downscaled climate models underestimate the severity of U.S. maize yield shocks (2020)*.
 
+![alt text](https://github.com/david0811/BCSD_CornYields_UQ/blob/master/figs/figure2.png)
+
 To run the analysis start to finish, run all cells in each notebook in the following order:
 1. `usda/usda_records.ipynb`
 2. `ag_model/fit_model/ag_model_fit.ipynb`
