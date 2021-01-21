@@ -1,7 +1,7 @@
-# Assessing the suitability of downscaled and bias-corrected climate information for use in agricultural modeling
+# Statistically bias-corrected and downscaled climate models underestimate the severity of U.S. maize yield shocks
 
 This respository contains all data and code required to reproduce the analysis in:<br />
-*Lafferty et. al., Statistically bias-corrected and downscaled climate models underestimate the severity of U.S. maize yield shocks (2020)*.
+*Lafferty et. al., Statistically bias-corrected and downscaled climate models underestimate the severity of U.S. maize yield shocks (2021)*.
 
 ![alt text](https://github.com/david0811/BCSD_CornYields_UQ/blob/master/figs/figure2.png)
 
