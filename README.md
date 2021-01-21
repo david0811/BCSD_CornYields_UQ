@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/280244273.svg)](https://zenodo.org/badge/latestdoi/280244273)
 # Statistically bias-corrected and downscaled climate models underestimate the severity of U.S. maize yield shocks
 
 This respository contains all data and code required to reproduce the analysis in:<br />
