@@ -1,2 +1,2 @@
-./other/plotting_tools/** filter=lfs diff=lfs merge=lfs -text
-./data/** filter=lfs diff=lfs merge=lfs -text
+other/plotting_tools/** filter=lfs diff=lfs merge=lfs -text
+data/** filter=lfs diff=lfs merge=lfs -text
