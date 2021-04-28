@@ -22,7 +22,7 @@ df <- filter(df, year <= 2005) # Match GCM period
 df$year2 <- df$year**2
 
 # Fit model using felm
-mod <- felm(log_yield ~ gdd + edd + prcp + prcp2 | factor(fips) : poly(year,2) + factor(fips) | 0 | state, data=df)
+mod <- felm(log_yield ~ gdd + edd + prcp + prcp2 | factor(state) : poly(year,2) + factor(fips) | 0 | state, data=df)
 summary(mod)
 
 # Fit model using fixest (easier for getting predictions)
