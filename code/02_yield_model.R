@@ -8,7 +8,6 @@ library(ggplot2)
 ######################################
 # Load climate data
 gmfd <- read.csv('../data/climate/GMFD/agvar_historical_gmfd.csv')
-gmfd$prcp <- gmfd$prcp * 1000 # m to mm
 gmfd$prcp2 <- gmfd$prcp**2
 
 # Load yield data
@@ -49,7 +48,6 @@ write.csv(subset(df, select = c(year, fips, state, gdd, edd, prcp, log_yield_sim
 nex.path <- '../data/climate/NEX-GDDP/hist'
 nex.models <- list.files(nex.path)
 climod <- read.csv(paste(nex.path, nex.models[2], sep="/"))
-climod$prcp <- climod$prcp * 1000 # m to mm
 climod$prcp2 <- climod$prcp**2
 climod$year2 <- climod$year**2
 climod <- filter(climod, year >= 1956) # Match GCM period
@@ -64,7 +62,6 @@ nex.path <- '../data/climate/NEX-GDDP/hist'
 nex.models <- list.files(nex.path)
 for(name in nex.models) {
   climod <- read.csv(paste(nex.path, name, sep="/"))
-  climod$prcp <- climod$prcp * 1000 # m to mm
   climod$prcp2 <- climod$prcp**2
   climod$year2 <- climod$year**2
   climod <- filter(climod, year >= 1956) # Match GCM period
@@ -82,7 +79,6 @@ cmip.path <- '../data/climate/CMIP'
 cmip.models <- list.files(cmip.path)
 for(name in cmip.models) {
   climod <- read.csv(paste(cmip.path, name, sep="/"))
-  climod$prcp <- climod$prcp * 1000 # m to mm
   climod$prcp2 <- climod$prcp**2
   climod$year2 <- climod$year**2
   climod <- filter(climod, year >= 1956) # Match GCM period
