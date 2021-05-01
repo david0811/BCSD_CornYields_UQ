@@ -14,10 +14,13 @@ gmfd$prcp2 <- gmfd$prcp**2
 usda <- read.csv('../data/usda/maize_county_yield_area.csv')
 usda <- subset(usda, select=c('fips','year','lat','lon','log_yield', 'state'))
 usda <- filter(usda, lon >= -100) # Select east of 100W meridian
+usda <- filter(usda, year <= 2005) # Match GCM period
+usda <- filter(usda, year >= 1956) # Match GCM period
+usda <- merge(usda,  usda %>% count(fips)) # Filter to counties with >=50% coverage
+usda <- filter(usda, n >= 25) # Filter to counties with >=50% coverage
 
 # Merge
 df = merge(gmfd, usda)
-df <- filter(df, year <= 2005) # Match GCM period
 df$year2 <- df$year**2
 
 # Fit model using felm
@@ -36,23 +39,12 @@ fe.res <- data.frame(fixef(fx.mod)$fips)
 colnames(fe.res) <- c('fe')
 write.csv(fe.res, "../data/yield/regression_fips_fe.csv")
 
-plot(fixef(fx.mod))
-
 # Save GMFD values
 log_yield_predicted <- fitted.values(fx.mod)
 df$log_yield_sim <- log_yield_predicted
 write.csv(subset(df, select = c(year, fips, state, gdd, edd, prcp, log_yield_sim)),
           "../data/yield/GMFD/all_gmfd_historical.csv",
           row.names=FALSE)
-
-nex.path <- '../data/climate/NEX-GDDP/hist'
-nex.models <- list.files(nex.path)
-climod <- read.csv(paste(nex.path, nex.models[2], sep="/"))
-climod$prcp2 <- climod$prcp**2
-climod$year2 <- climod$year**2
-climod <- filter(climod, year >= 1956) # Match GCM period
-climod$yield <- predict(fx.mod, climod)
-
 
 ############################################################################
 ############### Apply yield regression to climate data
