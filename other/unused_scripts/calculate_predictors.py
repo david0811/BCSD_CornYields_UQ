@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import xarray as xr
+import geopandas as gp
 import warnings
 warnings.simplefilter("ignore", RuntimeWarning) # Ignore invalid arcsin() in EDD calculation
 import xagg as xa
@@ -15,7 +16,7 @@ def above_threshold_each(mins, maxs, threshold):
     Degree-Days above a given threshold, using daily minimum and maximum
     temperatures.
     mins and maxs are numpy arrays; threshold is in the same units."""
-    
+
     """
     Code from James Rising (https://github.com/jrising/research-common/blob/master/python/gdd.py)
     """
