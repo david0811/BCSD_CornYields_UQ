@@ -72,7 +72,7 @@ write.csv(res, "../data/yield/baseline_coeffs+95.csv")
 log_yield_predicted <- fitted.values(fx.mod)
 df$log_yield_sim <- log_yield_predicted
 write.csv(subset(df, select <- c(year, fips, state, gdd, edd, prcp, log_yield_sim)),
-          "../data/yield/all_gmfd_historical.csv",
+          "../data/yield/baseline_model_gmfd_historical.csv",
           row.names<-FALSE)
 
 ##############################################
