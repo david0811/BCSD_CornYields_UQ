@@ -15,13 +15,3 @@ To run the analysis start to finish, run all cells in each notebook in the follo
 6. `analysis/county_agvar.ipynb` (this notebook produces Figure 3)
 
 ***Note:*** The `agvars` and `plotting_tools` directories were stored with [Git LFS](https://git-lfs.github.com) but can also be accessed [here](https://doi.org/10.5281/zenodo.4455847). The calculation of county-level degree days from the native NEX-GDDP and CMIP netcdf files was performed offline, but you can find scripts showing the basic structure in `other`.
-
-For the conda environment used throughout the analysis, see `environment.yml`. Python packages required:
-- `numpy`
-- `matplotlib`
-- `pandas`
-- `geopandas`
-- `scipy`
-- `statsmodels`
-- `scikit-learn`
-- `jupyterlab`<br />
