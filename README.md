@@ -4,7 +4,7 @@
 This respository contains all data and code required to reproduce the analysis in:<br />
 *Lafferty et. al., Statistically bias-corrected and downscaled climate models underestimate the adverse effects of extreme heat on U.S. maize yields (2021)*.
 
-![alt text](https://github.com/david0811/BCSD_CornYields_UQ/blob/master/figs/new/figure2.png)
+![alt text](https://github.com/david0811/BCSD_CornYields_UQ/tree/master/figs/newFigure2.png)
 
 To reproduce the analysis start to finish, run the scripts in the order of the filenames.
 
